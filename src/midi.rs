@@ -346,4 +346,8 @@ impl MidiMessage {
     pub fn event(&self) -> &MidiEvent {
         &self.event
     }
+
+    pub fn velocity(&self) -> u8 {
+        self.velocity
+    }
 }

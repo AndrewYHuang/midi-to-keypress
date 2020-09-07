@@ -81,7 +81,7 @@ fn midi_callback(_timestamp_us: u64, raw_message: &[u8], app_state: &AppState) {
                         .find(*msg.note(), msg.channel(), None) {
             Some(note_mapping) => {
                     let sequence = match *msg.event() {
-                        MidiEvent::NoteOn => &note_mapping.on,
+                        MidiEvent::NoteOn => { if msg.velocity() == 0 { &note_mapping.off } else { &note_mapping.on } },
                         MidiEvent::NoteOff => &note_mapping.off,
                     };
 
